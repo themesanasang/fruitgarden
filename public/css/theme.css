@@ -1,0 +1,64 @@
+@font-face {
+    font-family: Sriracha;
+    src: url('../fonts/Sriracha-Regular.ttf');
+}
+
+/* ========================================================================
+    Game Component
+   ========================================================================== */
+
+/* === navbar color === */
+.uk-background-navbar-top {
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.uk-navbar-nav > li > a {
+    font-family: 'Sriracha';
+    color: #525b63;
+    font-weight: 400;
+    font-size: 100%;
+    text-shadow: none;
+    line-height: 1.5;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    text-align: inherit;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+}
+
+.uk-navbar-nav > li.uk-active > a {
+    color: #f58c3b;
+}
+
+.uk-navbar-nav > li:hover > a {
+    color: #f58c3b;
+}
+
+/* === H  === */
+h1, .uk-h1, h2, .uk-h2, h3, .uk-h3, h4, .uk-h4, h5, .uk-h5, h6, .uk-h6 {
+    margin: 0 0 20px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Sriracha', "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: normal;
+    color: #333;
+    text-transform: none;
+}
+
+/* === link all page === */
+a.uk-link-heading:not(:hover),
+  .uk-link-heading a:not(:hover) {
+    color: #f58c3b;
+}
+a.uk-link-heading:hover,
+  .uk-link-heading a:hover {
+    color: #e57d2d;
+    text-decoration: none;
+}
+
+.uk-light a.uk-link-heading:hover,
+.uk-link-heading a:hover {
+  color: #e57d2d;
+  text-decoration: none;
+}
