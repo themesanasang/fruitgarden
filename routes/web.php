@@ -43,6 +43,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('users/delete', 'UserController@destroy');
 
     Route::resource('gardens', 'GardenController');
+    Route::post('gardens/delete', 'GardenController@destroy');
+    Route::get('gardens/uploads/{id}', 'GardenController@uploads');
+    Route::post('gardens/uploads/store', 'GardenController@imagesStore');
+    Route::get('gardens/uploads/gardens-getServerImages/{id}', 'GardenController@getServerImages');
+    Route::post('gardens/uploads/delete', 'GardenController@deleteUpload');
+    
 
     Route::resource('contact', 'ContactController');
 
