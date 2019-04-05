@@ -32,6 +32,9 @@ class UserController extends Controller
 
     
 
+    /**
+     * แสดงรายการผู้ใช้งาน
+     */
     public function index()
     {
         if(request()->ajax()) {
@@ -53,6 +56,9 @@ class UserController extends Controller
 
 
 
+    /**
+     * แสดงหน้าสร้างผู้ใช้งาน
+     */
     public function create()
     {
         $level = DB::table( 'f_users_level' )->select( DB::raw('id, level') )->orderby('id', 'desc')->get();
@@ -72,6 +78,9 @@ class UserController extends Controller
 
 
 
+    /**
+     * ตรวจสอบความถูกต้องข้อมูลผู้ใช้งาน
+     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -83,6 +92,9 @@ class UserController extends Controller
 
 
 
+    /**
+     * สร้างผู้ใช้งาน 1
+     */
     protected function createUser(array $data)
     {
         return User::create([
@@ -97,6 +109,9 @@ class UserController extends Controller
 
 
 
+    /**
+     * สร้างผู้ใช้งาน 2
+     */
     public function store(Request $request)
     {
         $this->validator($request->all())->validate();
@@ -108,6 +123,9 @@ class UserController extends Controller
 
 
 
+    /**
+     * แสดงหน้ารายละเอียดผู้ใช้งาน
+     */
     public function show($id)
     {
         try {
@@ -123,6 +141,9 @@ class UserController extends Controller
 
 
 
+    /**
+     * แสดงหน้าแก้ไขผู้ใช้งาน
+     */
     public function edit($id)
     {
         try {
@@ -150,6 +171,9 @@ class UserController extends Controller
 
 
 
+    /**
+     * แก้ไขผู้ใชงาน
+     */
     public function update(Request $request, $id)
     {
         try {
@@ -185,6 +209,9 @@ class UserController extends Controller
 
 
 
+    /**
+     * ลบผู้ใช้งาน
+     */
     public function destroy(Request $request)
     {
         try {
@@ -193,7 +220,6 @@ class UserController extends Controller
             return view('errors.404');
         }
 
-        $users = DB::table('f_users')->where('id', $id)->first();
         User::where('id', $id)->delete();
 
         return response()->json(['success'=>"ลบข้อมูลเรียบร้อยแล้ว"]);
