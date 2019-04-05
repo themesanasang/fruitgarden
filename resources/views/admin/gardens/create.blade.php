@@ -2,7 +2,57 @@
 
 @section('script-footer')
     {!! Html::script('https://code.jquery.com/jquery.js') !!}
-    {!! Html::script('public/js/rsr-map.js') !!}
+    <script>
+        function initMap() {
+            var lat;
+            var lng;
+            var position;
+
+            var map = new google.maps.Map(document.getElementById('map-garden'), {
+            center: {lat: 14.993209, lng: 103.104404},
+            zoom: 12,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI: false,
+            zoomControl : true,
+            });
+
+            var drawingManager = new google.maps.drawing.DrawingManager({
+            drawingMode: google.maps.drawing.OverlayType.MARKER,
+            drawingControl: true,
+            drawingControlOptions: {
+                position: google.maps.ControlPosition.TOP_CENTER,
+                drawingModes: ['marker']
+            },
+            markerOptions: {
+                icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                editable: true,
+                draggable: true
+            },
+            });
+            drawingManager.setMap(map);
+
+            google.maps.event.addListener(drawingManager, 'markercomplete', function(marker) {
+                //lat = marker.getPosition().lat();
+                //lon = marker.getPosition().lng();
+
+                position = marker.getPosition().toUrlValue(6);  
+                google.maps.event.addListener(marker, 'position_changed', function () {
+                    position = marker.getPosition().toUrlValue(6);  
+                    $('#latlon').val(position);
+                });
+
+                $('#latlon').val(position);
+
+                if (marker.type != google.maps.drawing.OverlayType.MARKER) {
+                drawingManager.setMap(null);
+                }
+
+                //console.log(lat);
+                //console.log(lon);    
+            });
+
+        }
+    </script>
     {!! Html::script('https://maps.googleapis.com/maps/api/js?key=AIzaSyBFX07vo41AoaQA1BSqALrDdjrTvVwTy4E&libraries=drawing&callback=initMap') !!}
 @stop
 
@@ -45,11 +95,10 @@
         <div class="uk-margin">
             <label class="uk-form-label" for="latlon">พิกัดร้าน</label>
             <div class="uk-form-controls">
-                <div id="map"></div>
+                <div id="map-garden"></div>
                 <input id="latlon" name="latlon" type="text" class="uk-input" placeholder="พิกัดร้าน">
             </div>
         </div>
-
         <div class="uk-margin">
             <label class="uk-form-label" for="pic_main">รูปหลัก</label>
             <div class="uk-form-controls">
@@ -58,10 +107,7 @@
                 <input type="file" name="mainImageFile" id="mainImageFile">
             </div>
         </div>
-
     </div>
-
-   
 
     <div class="uk-margin-medium-top uk-width-1-1@m">
         <div class="uk-text-center">

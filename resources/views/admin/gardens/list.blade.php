@@ -97,7 +97,7 @@ $(function() {
 @section('content')
 
 <div uk-grid>
-    <div class="uk-width-expand@m"><h3>จัดการสวนผลไม้</h3></div>
+    <div class="uk-width-expand@m"><h3>จัดการ สวนผลไม้</h3></div>
     <div class="uk-width-auto@m">
         <a href="{{ route('gardens.create') }}" class="uk-button uk-button-primary uk-width-auto@m"><span class="uk-margin-small-right" data-uk-icon="icon: plus"></span> เพิ่มสวนผลไม้</a>
     </div>
