@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h3>แก้ไขข้อมูลผู้ใช้งาน</h3>
+<h3>แก้ไขข้อมูล ผู้ใช้งาน</h3>
 <hr>
 
 {!! Form::open( array('route' => ['users.update', Crypt::encryptString($user['id'])], 'class' => 'uk-form-horizontal uk-margin-small uk-grid', 'method' => 'PATCH') ) !!}

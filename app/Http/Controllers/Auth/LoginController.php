@@ -79,7 +79,7 @@ class LoginController extends Controller
         $remember_me = $request->has('remember') ? true : false; 
 
         if (Auth::attempt($this->credentials($request), $remember_me)) {   
-            return redirect()->intended('admin/home');
+            return redirect()->intended('gardens');
         }
 
         return $this->sendFailedLoginResponse($request);

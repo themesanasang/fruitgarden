@@ -17,7 +17,7 @@ class Garden  extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'detail', 'address', 'phone', 'latlong', 'pic_main_name', 'pic_main_path', 'save_user'
+        'id', 'name', 'detail', 'address', 'phone', 'latlong', 'pic_main_name', 'pic_main_path', 'slug', 'star', 'save_user'
     ];
 
 }

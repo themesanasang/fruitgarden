@@ -62,3 +62,49 @@ a.uk-link-heading:hover,
   color: #e57d2d;
   text-decoration: none;
 }
+
+a.uk-link-card:not(:hover),
+  .uk-link-card a:not(:hover) {
+    color: #333;
+}
+a.uk-link-card:hover,
+  .uk-link-card a:hover {
+    color: #e57d2d;
+    text-decoration: none;
+}
+
+.uk-light a.uk-link-card:hover,
+.uk-link-card a:hover {
+  color: #e57d2d;
+  text-decoration: none;
+}
+
+
+
+/* === Section  === */
+.uk-section-garden-head {
+    background-color: #e57d2d;
+}
+.uk-section-hotel-head {
+  background-color: #1abc9c;
+}
+.uk-section-event-head {
+  background-color: #e74c3c;
+}
+.uk-section-rsr-head {
+  background-color: #487eb0;
+}
+
+
+/* === Map ===*/
+#map-detail {
+  height: 300px;
+	width: 100%;
+}
+
+
+
+/* === uk-breadcrumb === */
+.uk-breadcrumb > :last-child > * {
+  color: #f58c3b;
+}

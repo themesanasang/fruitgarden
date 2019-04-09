@@ -58,7 +58,7 @@
 
 @section('content')
 
-<h3>เพิ่มสวนผลไม้</h3>
+<h3>เพิ่ม สวนผลไม้</h3>
 <hr>
 
 {!! Form::open( array('route' => 'gardens.store', 'enctype' => 'multipart/form-data', 'class' => 'uk-form-horizontal uk-margin-small uk-grid') ) !!}
@@ -72,6 +72,12 @@
                         {{ $errors->first('name') }}
                     </div>
                 @endif
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label" for="detail"></label>
+            <div class="uk-form-controls">
+                <label><input class="uk-checkbox" type="checkbox" id="star" name="star" value="1"> แนะนำ</label>
             </div>
         </div>
         <div class="uk-margin">

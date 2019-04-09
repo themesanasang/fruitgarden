@@ -227,4 +227,35 @@ class UserController extends Controller
 
 
 
+     /**
+     * reset_password
+     */
+    public function reset_password(Request $request)
+    {
+        $id = Auth::user()->id;
+
+        if($request->password != '' && $request->password_confirmation != ''){
+            if($request->password == $request->password_confirmation){
+                User::where('id', $id)->update([ 'password' => bcrypt($request->password) ]);
+                return redirect()->back()->withErrors(['success'=>'แก้ไขรหัสผ่านสำเร็จ'])->withInput();
+            }else{
+                return redirect()->back()->withErrors(['password'=>'กรุณาเช็ครหัสผ่านอีกครั้ง'])->withInput();
+            }
+        }
+
+        if($request->password == '' && $request->password_confirmation != ''){
+            return redirect()->back()->withErrors(['password'=>'กรุณาเช็ครหัสผ่านอีกครั้ง'])->withInput();
+        }
+
+        if($request->password != '' && $request->password_confirmation == ''){
+            return redirect()->back()->withErrors(['password'=>'กรุณาเช็ครหัสผ่านอีกครั้ง'])->withInput();
+        }
+
+        if($request->password == '' && $request->password_confirmation == ''){
+            return redirect()->back()->withErrors(['password'=>'กรุณาเช็ครหัสผ่านอีกครั้ง'])->withInput();
+        }
+    }
+
+
+
 }

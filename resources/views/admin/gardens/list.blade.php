@@ -23,6 +23,7 @@ $(function() {
         processing: true,
         serverSide: true,
         destroy: true,
+        "order": [[ 4, "desc" ]],
         "pageLength": 10,
         "responsive": true,
         "pagingType": "simple",
@@ -48,6 +49,7 @@ $(function() {
             { data: 'id', name: 'id', 'visible': false },
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false,searchable: false },
             { data: 'name'},
+            { data: 'star', orderable: false},
             { data: 'address'},
             { data: 'action', name: 'action', orderable: false,searchable: false }
         ]
@@ -99,7 +101,7 @@ $(function() {
 <div uk-grid>
     <div class="uk-width-expand@m"><h3>จัดการ สวนผลไม้</h3></div>
     <div class="uk-width-auto@m">
-        <a href="{{ route('gardens.create') }}" class="uk-button uk-button-primary uk-width-auto@m"><span class="uk-margin-small-right" data-uk-icon="icon: plus"></span> เพิ่มสวนผลไม้</a>
+        <a href="{{ route('gardens.create') }}" class="uk-button uk-button-primary uk-width-auto@m"><span class="uk-margin-small-right" data-uk-icon="icon: plus"></span> เพิ่ม สวนผลไม้</a>
     </div>
 </div>
 <hr>
@@ -111,6 +113,7 @@ $(function() {
             <th>#</th>
             <th >ลำดับ</th>
             <th class="uk-table-expand">ชื่อสวนผลไม้</th>
+            <th class=""></th>
             <th class="uk-table-expand uk-width-medium">ที่อยู่</th>
             <th class="uk-table-expand">จัดการ</th>
         </tr>

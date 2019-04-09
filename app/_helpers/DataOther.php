@@ -1,5 +1,7 @@
 <?php
 namespace App\_helpers;
+use DB;
+use Exception;
 
 class DataOther
 {
@@ -61,10 +63,115 @@ class DataOther
         return $text;
     }
 
+
+
+
     private static function mockRandChar() { 
         $t = "abcdefghijklmnopqrstuvwxyz"; #letters only
         $idx = rand(0, strlen($t)-1); 
         return substr($t, $idx, 2); 
+    }
+
+
+
+    /**
+     * random color
+     */
+    public static function random_color(){
+        $array = array("#1abc9c", "#3498db", "#34495e", "#f1c40f", "#e67e22", "#e74c3c", "#95a5a6", "#273c75", "#487eb0", "#b71540");
+        $output = array_rand( $array , 1 );
+
+        return $array[$output];
+    }
+
+
+
+    /**
+     * ดึงข้อมูลติดต่อ facebook ของ web
+     */
+    public static function getContactFacebook()
+    {
+        try{
+            $app_config = DB::table('f_contact')->select('facebook')->first(); 
+            return (($app_config->facebook == '' || $app_config->facebook == '-')?'#':'http://'.$app_config->facebook);
+        }catch(\Exception $e){
+            return '-';
+        }
+    }
+
+
+
+
+    /**
+     * ดึงข้อมูลติดต่อ instagram ของ web
+     */
+    public static function getContactInstagram()
+    {
+        try{
+            $app_config = DB::table('f_contact')->select('instagram')->first(); 
+            return (($app_config->instagram == '' || $app_config->instagram == '-')?'#':'http://'.$app_config->instagram);
+        }catch(\Exception $e){
+            return '-';
+        }
+    }
+
+
+
+    /**
+     * ดึงข้อมูลติดต่อ instagram ของ web
+     */
+    public static function getContactTwitter()
+    {
+        try{
+            $app_config = DB::table('f_contact')->select('twitter')->first(); 
+            return (($app_config->twitter == '' || $app_config->twitter == '-')?'#':'http://'.$app_config->twitter);
+        }catch(\Exception $e){
+            return '-';
+        }
+    }
+
+
+    /**
+     * ดึงข้อมูลติดต่อ about ของ web
+     */
+    public static function getContactAbout()
+    {
+        try{
+            $app_config = DB::table('f_contact')->select('about')->first(); 
+            return $app_config->about;
+        }catch(\Exception $e){
+            return '-';
+        }
+    }
+
+
+
+     /**
+     * ดึงข้อมูลติดต่อ address ของ web
+     */
+    public static function getContactAddress()
+    {
+        try{
+            $app_config = DB::table('f_contact')->select('address')->first(); 
+            return $app_config->address;
+        }catch(\Exception $e){
+            return '-';
+        }
+    }
+
+
+
+     /**
+     * ดึงข้อมูลติดต่อ phone ของ web
+     */
+    public static function getContactPhone()
+    {
+        try{
+            $app_config = DB::table('f_contact')->select('phone')->first(); 
+            return $app_config->phone;
+        }catch(\Exception $e){
+            return '-';
+        }
     }
 
 

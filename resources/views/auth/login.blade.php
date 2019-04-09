@@ -1,6 +1,34 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@yield('description', config('app.description'))"/>
+    <meta name="keywords" content="@yield('keywords', config('app.keywords'))"/>
+    <meta name="copyright" content="{{ config('app.name') }}">
+    <meta name="author" content="{{ config('app.name') }}"/>
+    <meta name="application-name" content="@yield('title', config('app.name'))">
+    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-@section('content')
+    <link rel="shortcut icon" href="{{ asset('public/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('public/favicon.ico') }}" type="image/x-icon">
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('public/css/uikit.min.css') }}">
+     
+    <link rel="stylesheet" href="{{ asset('public/css/theme.css') }}">
+
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
+</head>
+<body>
+
 <div class="uk-height-1-1">
 <div class="uk-flex uk-flex-center uk-flex-middle uk-background-default uk-height-viewport">
     <div class="uk-position-bottom-center uk-position-small uk-visible@m">
@@ -40,27 +68,13 @@
                 </div>
             </fieldset>
         </form>
-        <div>
-            <div class="uk-text-center">
-                <a class="uk-link-reset uk-text-small" data-uk-toggle="target: #recover;animation: uk-animation-slide-top-small">ลืมรหัสผ่าน?</a>
-            </div>
-            <div class="uk-margin-small-top" id="recover" hidden>
-                <form action="login.html">
-                    
-                    <div class="uk-margin-small">
-                        <div class="uk-inline uk-width-1-1">
-                            <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: mail"></span>
-                            <input class="uk-input" placeholder="อีเมล์" required type="text">
-                        </div>
-                    </div>
-                    <div class="uk-margin-small">
-                        <button type="submit" class="uk-button uk-button-primary uk-width-1-1">ส่งรหัสผ่าน</button>
-                    </div>
-                    
-                </form>
-            </div>
-        </div>
     </div>
 </div>
 </div>
-@endsection
+
+<!-- Scripts -->
+<script src="{{ asset('public/js/uikit.min.js') }}"></script>
+<script src="{{ asset('public/js/uikit-icons.min.js') }}"></script>
+    
+</body>
+</html>

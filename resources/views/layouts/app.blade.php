@@ -54,9 +54,16 @@
         </div>
         <!-- /CONTENT admin -->    
         
-    @else
+    @else   
         <!-- content Other -->
-        @yield('content') 
+        <div class="uk-section-default uk-preserve-color">
+            
+            @include('includes.header-user')
+            
+            @yield('content') 
+
+        </div>
+        @include('includes.footer')
         <!-- /content Other -->      
     @endif 
     

@@ -117,9 +117,9 @@ $(function() {
 @section('content')
 
 <div uk-grid>
-    <div class="uk-width-expand@m"><h3>จัดการผู้ใช้งาน</h3></div>
+    <div class="uk-width-expand@m"><h3>จัดการ ผู้ใช้งาน</h3></div>
     <div class="uk-width-auto@m">
-        <a href="{{ route('users.create') }}" class="uk-button uk-button-primary uk-width-auto@m"><span class="uk-margin-small-right" data-uk-icon="icon: plus"></span> เพิ่มผู้ใช้งาน</a>
+        <a href="{{ route('users.create') }}" class="uk-button uk-button-primary uk-width-auto@m"><span class="uk-margin-small-right" data-uk-icon="icon: plus"></span> เพิ่ม ผู้ใช้งาน</a>
     </div>
 </div>
 <hr>

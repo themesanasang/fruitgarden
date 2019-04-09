@@ -36,10 +36,17 @@ class GardenController extends Controller
      * แสดงรายการสวนผลไม้
      */
     public function index()
-    {
+    {  
         if(request()->ajax()) {
             return Datatables()
             ->of(Garden::query())
+            ->addColumn('star', function ($gardens) {
+                if($gardens->star == 1){
+                    return ' <span class="uk-badge">แนะนำ</span>';
+                }
+
+                return '-';
+            })
             ->addColumn('action', function ($gardens) {
                     return '
                         <a uk-icon="icon: plus-circle" uk-tooltip="title: เพิ่มรูปภาพ; pos: top-left" href="'.url('gardens/uploads/'.Crypt::encryptString($gardens->id)).'"></a>
@@ -48,7 +55,7 @@ class GardenController extends Controller
                         <a uk-icon="icon: trash" uk-tooltip="title: ลบ; pos: top-left" href="javascript:void(0)" onclick="gardensDelete(\''.Crypt::encryptString($gardens->id).'\')"></a>
                     '; 
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['star', 'action'])
             ->addIndexColumn()
             ->make(true);
         }
@@ -80,7 +87,7 @@ class GardenController extends Controller
 
 
     /**
-     * ตรวจสอบข้อมูลภาพหลักของร้านอาหาร
+     * ตรวจสอบข้อมูลภาพหลัก
      */
     protected function validatorMainImg(array $data)
     {
@@ -110,6 +117,7 @@ class GardenController extends Controller
             'phone' => $request->phone,
             'latlong' => $request->latlon,
             'slug' => DataOther::slugify($request->name),
+            'star' => (isset($request->star)?$request->star:0),
             'save_user' => Auth::user()->id
         ])->id;
 
@@ -135,7 +143,7 @@ class GardenController extends Controller
             Garden::where('id', $id)
                 ->update([
                     'pic_main_name' => $name_img,
-                    'pic_main_path' => $nameFolder
+                    'pic_main_path' => $nameFolder.'/'.$name_img
                 ]);
         }   
         /* === end รูปหลัก === */
@@ -187,7 +195,7 @@ class GardenController extends Controller
             'picture_type' => '1',
             'use_id' => $id,
             'pic_name' => $name_img,
-            'pic_path' => $nameFolder,
+            'pic_path' => $nameFolder.'/'.$name_img,
             'save_user' => Auth::user()->id
         ]);
 
@@ -207,7 +215,7 @@ class GardenController extends Controller
             return view('errors.404');
         }
         
-        $data = Picture::where('use_id', $id)->get();
+        $data = Picture::where('use_id', $id)->where('picture_type', '1')->get();
 
         $nameFolder = 'files/garden-'.$id.'/other';
         
@@ -215,8 +223,8 @@ class GardenController extends Controller
         foreach ($data as $d) {
             $imageAnswer[] = [
                 'original' => $d['pic_name'],
-                'server' => '../../public/'.$d['pic_path'].'/'.$d['pic_name'],
-                'size' => File::size('public/'.$d['pic_path'].'/'.$d['pic_name'])     
+                'server' => asset('public/'.$d['pic_path']),
+                'size' => File::size('public/'.$d['pic_path'])     
             ];
         }
 
@@ -241,7 +249,7 @@ class GardenController extends Controller
 
         foreach($data as $d){
             $id = $d['id'];
-            $path = 'public/'.$d['pic_path'].'/'.$d['pic_name'];
+            $path = 'public/'.$d['pic_path'];
         }
 
         Picture::where('id', $id)->delete();
@@ -337,7 +345,7 @@ class GardenController extends Controller
             /** delete file old */
             $data = Garden::where('id', $id)->get();
             foreach($data as $d){
-                $path_old = 'public/'.$d['pic_main_path'].'/'.$d['pic_main_name'];
+                $path_old = 'public/'.$d['pic_main_path'];
             }
 
             if( File::exists( $path_old ) ){
@@ -354,7 +362,7 @@ class GardenController extends Controller
             Garden::where('id', $id)
             ->update([
                 'pic_main_name' => $name_img,
-                'pic_main_path' => $nameFolder
+                'pic_main_path' => $nameFolder.'/'.$name_img
             ]);
         }
 
@@ -364,6 +372,7 @@ class GardenController extends Controller
                 , 'address' => $request->address
                 , 'phone' => $request->phone
                 , 'latlong' => $request->latlon
+                , 'star' => (isset($request->star)?$request->star:0)
                 , 'save_user' => Auth::user()->id
             ]);
         
@@ -385,7 +394,7 @@ class GardenController extends Controller
 
         Garden::where('id', $id)->delete();
 
-        Picture::where('use_id', $id)->delete();
+        Picture::where('use_id', $id)->where('picture_type', '1')->delete();
 
         $nameFolder = 'files/garden-'.$id;
         $path = "public/".$nameFolder;

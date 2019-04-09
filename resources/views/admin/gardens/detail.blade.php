@@ -39,6 +39,8 @@
             <dl class="uk-description-list">
                 <dt>ชื่อสวน :</dt>
                 <dd>{{ $garden->name }}</dd>
+                <dt></dt>
+                <dd><?php echo (($garden->star == 1)?'<span class="uk-badge">รายการแนะนำ</span>':'') ?></dd>
                 <dt>รายละเอียด :</dt>
                 <dd>{{ $garden->detail }}</dd>
                 <dt>ที่อยู่ :</dt>
@@ -56,7 +58,7 @@
                 <dt>รูปหลัก :</dt>
                 <dd>
                     @if($garden->pic_main_name != "")
-                    <img class="uk-responsive-width" data-src="../public/{{ $garden->pic_main_path }}/{{ $garden->pic_main_name }}" width="360" height="260" alt="" uk-img />
+                        <img class="uk-responsive-width" data-src="{{ asset('public/'.$garden->pic_main_path) }}" width="360" height="260" alt="" uk-img />
                     @endif
                 </dd>
                 <dt>วันที่สร้าง :</dt>

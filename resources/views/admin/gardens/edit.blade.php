@@ -86,6 +86,12 @@
             </div>
         </div>
         <div class="uk-margin">
+            <label class="uk-form-label" for="detail"></label>
+            <div class="uk-form-controls">
+                <label><input class="uk-checkbox" type="checkbox" id="star" name="star" value="1" <?php echo (( $garden->star == 1)?'checked':''); ?> > แนะนำ</label>
+            </div>
+        </div>
+        <div class="uk-margin">
             <label class="uk-form-label" for="detail">รายละเอียด</label>
             <div class="uk-form-controls">
                 <textarea id="detail" name="detail" class="uk-textarea" rows="5" placeholder="รายละเอียด" >{{ $garden->detail }}</textarea>
@@ -121,7 +127,7 @@
                 <small class="form-text text-muted">ไฟล์ JPG,GIF,PNG ขนาดต่ำกว่า 1Mb</small>
                 <input type="file" name="mainImageFile" id="mainImageFile">
                 @if($garden->pic_main_name != "")
-                    <img class="uk-responsive-width" data-src="../public/{{ $garden->pic_main_path }}/{{ $garden->pic_main_name }}" width="360" height="260" alt="" uk-img />
+                    <img class="uk-responsive-width" data-src="{{ asset('public/'.$garden->pic_main_path) }}" width="360" height="260" alt="" uk-img />
                 @endif
             </div>
         </div>

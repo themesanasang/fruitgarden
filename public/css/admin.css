@@ -248,7 +248,9 @@
 
 
 /* === MAP === */
-#map, #map-detail, #map-edit {
+#map-garden, #map-garden-detail, #map-garden-edit
+, #map-hotel, #map-hotel-detail, #map-hotel-edit
+, #map-rsr, #map-rsr-detail, #map-rsr-edit {
 	height: 300px;
 	width: 100%;
 }

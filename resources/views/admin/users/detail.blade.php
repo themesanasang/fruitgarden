@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h3>รายละเอียดผู้ใช้งาน</h3>
+    <h3>รายละเอียด ผู้ใช้งาน</h3>
     <hr>
 
     <div class="uk-child-width-expand@s uk-margin-small-bottom" uk-grid>

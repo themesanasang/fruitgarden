@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3>เพิ่มผู้ใช้งาน</h3>
+<h3>เพิ่ม ผู้ใช้งาน</h3>
 <hr>
 
 {!! Form::open( array('route' => 'users.store', 'class' => 'uk-form-horizontal uk-margin-small uk-grid') ) !!}
